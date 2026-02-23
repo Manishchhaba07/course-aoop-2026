@@ -1,0 +1,23 @@
+// Conceptual Questions
+Why does BFS require a queue instead of a stack? What would happen if we used a stack instead? What traversal pattern would that produce?
+BFS needs a queue because it must visit nodes in the same order they are discovered (first come, first served).
+If we used a stack, the most recently discovered node would be visited first. That would produce Depth First Search (DFS), which explores one path fully before going to another.
+
+What happens if we don't track visited vertices? Explain the consequences with an example of a graph with a cycle.
+If we don’t track visited vertices, the algorithm will keep visiting the same nodes again and again.
+This can cause an infinite loop and the program may never stop running. In a cycle like 0–1–2–0, BFS will go from 0 to 1 to 2 and then back to 0 repeatedly without stopping.
+
+How would BFS change if the graph was directed? Would the algorithm logic need to be modified? Would addEdge() need changes?
+BFS would only follow edges in their given direction. No, the BFS algorithm logic remains the same.
+Yes, addEdge() would only add a one-way connection instead of adding both directions.
+
+Where is encapsulation used in your design? Identify at least three examples of encapsulation in your Graph class and explain why each is important.
+
+The adjacency list is declared private, so other classes cannot directly change the graph structure, which protects data integrity. The number of vertices is private, so it cannot be modified from outside the class, which prevents invalid graph states.
+The BFS logic is inside a public method, so users can perform traversal without knowing how the algorithm works internally, which hides implementation details.
+
+What is the time complexity of your BFS implementation? Explain in terms of V (vertices) and E (edges). What is the space complexity?
+
+The time complexity is O(V + E) because each vertex is visited once and each edge is checked once.
+It is O(V) for visiting all vertices and O(E) for exploring all edges in the adjacency list.
+The space complexity is O(V) because we use a visited array and a queue that can store up to V vertices.
