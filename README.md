@@ -1,11 +1,12 @@
-# course-aoop-2026
-**Lab_01**
+# Advanced OOPS Lab_01 – BFS Implementation
 
-**BFSTest.java**
-Driver class that creates a graph instance and demonstrates Breadth-First Search (BFS) traversal, validating correctness and traversal order.
+## Files Overview
 
-**Graph.java**
-Encapsulated graph implementation using an adjacency list, featuring addEdge() and BFS traversal with proper visited tracking and queue-based processing.
+### BFSTest.java
+Driver class that creates a Graph instance and demonstrates Breadth-First Search (BFS) traversal to verify correctness and traversal order.
 
-**Conceptual_Questions.txt**
-Written analysis covering BFS design decisions, queue vs stack behavior, cycle handling, directed graph considerations, encapsulation principles, and time/space complexity (O(V + E)).
+### Graph.java
+Encapsulated graph implementation using an adjacency list. Includes `addEdge()` and a queue-based BFS algorithm with proper visited tracking.
+
+### Conceptual_Questions.txt
+Contains theoretical explanations covering BFS design decisions, queue vs stack behavior (BFS vs DFS), cycle handling, directed graph considerations, encapsulation examples, and time/space complexity analysis (O(V + E)).
