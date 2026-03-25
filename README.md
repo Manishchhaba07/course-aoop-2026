@@ -80,3 +80,123 @@ This project simulates a simplified travel or flight routing system. It can be e
 ## 🚀 Conclusion
 
 The project provides a strong foundation in graph-based problem solving and demonstrates how classical algorithms like DFS and BFS can be applied to real-world scenarios such as route planning and navigation systems.
+
+
+# Advanced OOPS Lab_04 – Generic Segment Tree 🌳
+
+A flexible, generic **Segment Tree** implementation in Java that supports any numeric type and any binary operation — including sum, product, GCD, min, max, and custom functions.
+
+---
+
+## 🚀 Features
+
+- ✅ Generic type support (`Integer`, `Long`, `Double`, etc.)
+- ✅ Custom binary operations via `BinaryOperator<T>`
+- ✅ Custom update logic via `UnaryOperator<T>`
+- ✅ Supports **Range Sum**, **Range Product**, **Range GCD**, **Range Min**, **Range Max**
+- ✅ Point updates in **O(log n)**
+- ✅ Range queries in **O(log n)**
+- ✅ Auto-pads to next power of two for efficient indexing
+
+---
+
+## 🧠 How It Works
+
+The tree is built over a padded array (next power of 2). Leaf nodes store the original data, and internal nodes store the result of merging their children using the provided `BinaryOperator`.
+```
+Input:  [1, 2, 3, 4]
+
+Sum Tree:
+        10
+       /    \
+      3      7
+     / \    / \
+    1   2  3   4
+```
+
+---
+
+## 🛠️ Usage
+
+### 1. Range Sum
+```java
+List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+NumberST<Integer> st = new NumberST<>(list, (a, b) -> a + b, 0);
+System.out.println(st.query(1, 3)); // Sum from index 1 to 3
+```
+
+### 2. Range Product
+```java
+NumberST<Integer> st = new NumberST<>(list, (a, b) -> a * b, 1);
+System.out.println(st.query(0, 3)); // Product of all elements
+```
+
+### 3. Range GCD
+```java
+NumberST<Integer> st = new NumberST<>(list, (a, b) -> gcd(a, b), 0);
+System.out.println(st.query(0, 3));
+```
+
+### 4. Range Min / Max
+```java
+// Min
+NumberST<Integer> minST = new NumberST<>(list, (a, b) -> a < b ? a : b, Integer.MAX_VALUE);
+
+// Max
+NumberST<Integer> maxST = new NumberST<>(list, (a, b) -> a > b ? a : b, Integer.MIN_VALUE);
+```
+
+### 5. Point Update (Direct Value)
+```java
+st.update(2, 5); // Set index 2 to value 5
+```
+
+### 6. Point Update (Using UnaryOperator)
+```java
+st.update(2, x -> x * 2); // Double the value at index 2
+```
+
+---
+
+## ⏱️ Time & Space Complexity
+
+| Operation | Complexity |
+|-----------|------------|
+| Build     | O(n)       |
+| Query     | O(log n)   |
+| Update    | O(log n)   |
+| Space     | O(n)       |
+
+---
+
+## 🔧 Constructor
+```java
+NumberST<T>(List<T> data, BinaryOperator<T> mergeFunc, T identity)
+```
+
+| Parameter    | Description                                      |
+|--------------|--------------------------------------------------|
+| `data`       | Input list of elements                           |
+| `mergeFunc`  | Binary function to merge two nodes               |
+| `identity`   | Identity value for the operation (e.g. `0` for sum, `1` for product) |
+
+---
+
+## 📌 Methods
+
+| Method | Description |
+|--------|-------------|
+| `build()` | Builds the segment tree from input data |
+| `query(int l, int r)` | Returns merged result for range `[l, r]` |
+| `update(int index, T value)` | Updates element at index to new value |
+| `update(int index, UnaryOperator<T> fn)` | Updates element using a function |
+| `printTree()` | Prints all tree nodes |
+
+---
+
+## 📚 Concepts Used
+
+- Segment Trees (Iterative + Recursive hybrid)
+- Java Generics (`<T extends Number>`)
+- Functional Interfaces (`BinaryOperator`, `UnaryOperator`)
+- Power-of-two padding for tree alignment
